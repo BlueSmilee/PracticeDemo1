@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        function login() {
+        var username = $('#nameInput').val();
+        var password = $('#passwordInput').val();
+        console.log('login name is ' + username)
+        console.log('login password is ' + password)
+
+            $.ajax({
+                type:"POST",
+                url:"/register",
+                dataType:"json",
+                data:{
+                    username:username,
+                    password:password,
+                },
+                success:function(data){
+                    if(data.success){
+                    console.log('ok')
+                    }else{
+                     console.log('fail')
+                    }
+                },
+                error: function(jqXHR){
+                    alert("发生错误："+jqXHR.status);
+                }
+            });
+            }
+
+    function select() {
+        var usernameTemp = $('#nameInputForSelect').val();
+        console.log('login name is ' + usernameTemp)
+            $.ajax({
+                type:"GET",
+                url:"/select",
+                dataType:"json",
+                data:{
+                    username:usernameTemp,
+
+                },
+                success:function(data){
+                    alert(data)
+                },
+                error: function(jqXHR){
+                    alert("发生错误："+jqXHR.status);
+                }
+            });
+            }
+   function dede() {
+        var usernameTemp = $('#nameInputForDelete').val();
+        console.log('login name is ' + usernameTemp)
+            $.ajax({
+                type:"DELETE",
+                url:"/delete",
+                dataType:"json",
+                data:{
+                    username:usernameTemp,
+
+                },
+                success:function(data){
+                    alert(data)
+                },
+                error: function(jqXHR){
+                    alert("发生错误："+jqXHR.status);
+                }
+            });
+            }
+   function update() {
+        var username = $('#nameInputByUpdate').val();
+        var password = $('#passwordInputByUpdate').val();
+        console.log('login password ' + password)
+            $.ajax({
+                type:"POST",
+                url:"/update",
+                dataType:"json",
+                data:{
+
+                    username:username,
+                    password:password,
+
+                },
+                success:function(data){
+                    alert(data)
+                },
+                error: function(jqXHR){
+                    alert("发生错误："+jqXHR.status);
+                }
+            });
+            }
+            //商品的增删改查
+   function addgo(){
+        var goodsName = $('#goodsInput').val();
+        var number = $('#numberInput').val();
+        var price = $('#priceInput').val();
+        console.log('login goods is ' + goodsName)
+        console.log('login goodNumber is ' + number)
+        console.log('login price is' + price)
+
+             $.ajax({
+                type:"POST",
+                url:"/addGds",
+                dataType:"json",
+                data:{
+                   goodsname:goodsName,
+                   number:number,
+                   price:price,
+                },
+                success:function(data){
+                     alert(data)
+                },
+                error:function(jqXHR){
+                      alert("发生错误：" +jqXHR.status)
+                }
+            })
+
+   }
+   function goodsSelect(){
+         var goodsName = $('#goodsNameInputForSelect').val();
+         console.log('login selectName is' + goodsName);
+         $.ajax({
+            type:"GET",
+            url:"/selectGoods",
+            dataType:"json",
+             data:{
+                goodsname:goodsName,
+             },
+             success:function(data){
+                  alert(data)
+             },
+             error:function(jqXHR){
+                  alert("发生错误：" +jqXHR.status)
+             }
+         })
+    }
+   function gdede(){
+         var goodsName = $('#goodsInputForDelete').val();
+         console.log('login selectName is' + goodsName);
+         $.ajax({
+            type:"DELETE",
+            url:"/deleteGoods",
+            dataType:"json",
+             data:{
+                goodsname:goodsName,
+             },
+             success:function(data){
+                  alert(data)
+             },
+             error:function(jqXHR){
+                  alert("发生错误：" +jqXHR.status)
+             }
+         })
+   }
+   function goodsupdate(){
+        var goodsName = $('#gdnameByUpdate').val();
+        var number = $('#numberByUpdate').val();
+        var price = $('#priceByUpdate').val();
+        console.log('login goods is ' + goodsName)
+        console.log('login goodNumber is ' + number)
+        console.log('login price is' + price)
+
+             $.ajax({
+                type:"POST",
+                url:"/updateGds",
+                dataType:"json",
+                data:{
+                   goodsname:goodsName,
+                   number:number,
+                   price:price,
+                },
+                success:function(data){
+                     alert(data)
+                },
+                error:function(jqXHR){
+                      alert("发生错误：" +jqXHR.status)
+                }
+            })
+
+   }
+    </script>
+
+</head>
+<body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+username:<input id="nameInput">
+password:<input id="passwordInput">
+<button onclick="login()">注册</button>
+
+<br>
+username:<input id="nameInputForSelect">
+<button onclick="select()">查找</button>
+
+<br>
+username:<input id="nameInputForDelete">
+<button onclick="dede()">删除</button>
+
+<br>
+username:<input id="nameInputByUpdate">
+password:<input id="passwordInputByUpdate">
+<button onclick="update()">修改</button>
+<br>
+<br>
+<br>
+<br>
+<br>
+GoodsName:<input id="goodsInput">
+Number:<input id="numberInput">
+Price:<input id="priceInput">
+<button onclick="addgo()">商品增加</button>
+<br>
+GoodsName:<input id="goodsNameInputForSelect">
+<button onclick="goodsSelect()">商品查找</button>
+<br>
+GoodsName:<input id="goodsInputForDelete">
+<button onclick="gdede()">商品删除</button>
+<br>
+GoodsName:<input id="gdnameByUpdate">
+Number:<input id="numberByUpdate">
+Price:<input id="priceByUpdate">
+<button onclick="goodsupdate()">商品修改</button>
+
+
+
+
+</body>
+</html>
