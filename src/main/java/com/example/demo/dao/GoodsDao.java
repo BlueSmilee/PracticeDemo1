@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 public interface GoodsDao {
-    @Insert("insert into goods (goodsnmae,number,price,createTime,updateTime,addGoodsId,updateGoodsId,deleteFlag)values(#{goodsname}, #{number},#{price},#{createTime},#{updateTime},#{createGoodsId},#{updateGoodsId},#{deleteFlag}) ")
+    @Insert("insert into goods (goodsname,number,price,createTime,updateTime,addGoodsId,updateGoodsId,deleteFlag)values(#{goodsname}, #{number},#{price},#{createTime},#{updateTime},#{createGoodsId},#{updateGoodsId},#{deleteFlag}) ")
     void addGoods(Goods goods);
 
     @Select("select * from goods where goodsname = #{goodsname}")

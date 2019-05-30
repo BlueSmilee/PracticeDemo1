@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.GoodsDao;
 import com.example.demo.model.PO.Goods;
+import com.example.demo.service.IGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +17,13 @@ import java.util.Date;
 public class Goodscontroller {
     @Autowired
     private GoodsDao goodsDao;
+    @Autowired
+    private IGoodsService goodsService;
 
     //商品增加
     @PostMapping("/addGds")
     public String addGoods(Goods goods) {
-        Date date = new Date();
+        /*Date date = new Date();
         goods.setCreateTime(date);
         goods.setUpdateTime(date);
         goods.setDeleteFlag(0);
@@ -29,7 +32,8 @@ public class Goodscontroller {
         goodsDao.addGoods(goods);
         System.out.println("goods = [" + goods + "]");
         return "{\"status\":\"ok\"}";
-
+*/
+        return goodsService.addGoods(goods);
     }
 
     //商品查找
